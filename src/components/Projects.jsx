@@ -12,7 +12,19 @@ export default function Projects() {
       title: 'Kid-Zooom',
       description:
         'Kid-Zooom is an interactive and educational website designed for kids. The platform focuses on engaging UI, colorful animations, and simple navigation to help children explore learning content in a fun way.',
-      image: '.public/images/project1.jpg',
+      image: '/images/Project1.JPG',
+      tech: 'HTML, CSS, JavaScript, React',
+      type: 'Front-End & Back-End Web Application',
+      status: 'Live Project',
+      link: 'https://kid-zooom.vercel.app/',
+      gradient: 'from-blue-600 to-cyan-500',
+    },
+    {
+      id: 2,
+      title: 'Kid-Zooom',
+      description:
+        'Kid-Zooom is an interactive and educational website designed for kids. The platform focuses on engaging UI, colorful animations, and simple navigation to help children explore learning content in a fun way.',
+      image: '/images/Project2.JPG',
       tech: 'HTML, CSS, JavaScript, React',
       type: 'Front-End & Back-End Web Application',
       status: 'Live Project',
