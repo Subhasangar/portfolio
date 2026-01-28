@@ -12,7 +12,7 @@ export default function Projects() {
       title: 'Kid-Zooom',
       description:
         'Kid-Zooom is an interactive and educational website designed for kids. The platform focuses on engaging UI, colorful animations, and simple navigation to help children explore learning content in a fun way.',
-      image: './images/project1.jpg',
+      image: '.public/images/project1.jpg',
       tech: 'HTML, CSS, JavaScript, React',
       type: 'Front-End & Back-End Web Application',
       status: 'Live Project',
