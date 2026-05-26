@@ -7,6 +7,7 @@ import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import CursorTracer from './components/CursorTracer'
 
 function App() {
   useEffect(() => {
@@ -18,11 +19,12 @@ function App() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-primary text-white min-h-screen overflow-x-hidden"
+      className="portfolio-shell bg-primary text-text-primary min-h-screen overflow-x-hidden"
     >
       <div className="fixed top-0 left-0 w-96 h-96 bg-accent/5 rounded-full mix-blend-screen filter blur-3xl opacity-20 pointer-events-none -z-10 animate-pulse" />
       <div className="fixed bottom-0 right-0 w-96 h-96 bg-accent/5 rounded-full mix-blend-screen filter blur-3xl opacity-20 pointer-events-none -z-10 animate-pulse" />
 
+      <CursorTracer />
       <Navbar />
       <Hero />
       <About />

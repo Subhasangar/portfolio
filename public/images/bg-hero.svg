@@ -1,0 +1,27 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="heroGlow" cx="72%" cy="45%" r="46%">
+      <stop offset="0%" stop-color="#fff1bd" stop-opacity="0.34"/>
+      <stop offset="42%" stop-color="#f0c66e" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#050403" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="heroBase" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050403"/>
+      <stop offset="48%" stop-color="#0d0906"/>
+      <stop offset="100%" stop-color="#1a1208"/>
+    </linearGradient>
+    <filter id="softBlur"><feGaussianBlur stdDeviation="26"/></filter>
+    <pattern id="dust" width="180" height="180" patternUnits="userSpaceOnUse">
+      <circle cx="24" cy="42" r="1.5" fill="#fff1bd" opacity="0.34"/>
+      <circle cx="112" cy="78" r="1" fill="#f0c66e" opacity="0.3"/>
+      <circle cx="154" cy="128" r="1.8" fill="#fff3cf" opacity="0.22"/>
+      <circle cx="68" cy="150" r="0.9" fill="#b8862f" opacity="0.4"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#heroBase)"/>
+  <rect width="1920" height="1080" fill="url(#heroGlow)"/>
+  <rect width="1920" height="1080" fill="url(#dust)" opacity="0.72"/>
+  <path d="M1040 130 C1320 40 1660 180 1810 430 C1610 360 1370 390 1180 530 C1020 650 870 690 690 625 C800 470 860 245 1040 130Z" fill="#f0c66e" opacity="0.1" filter="url(#softBlur)"/>
+  <path d="M1120 190 C1360 120 1600 240 1708 430 C1500 402 1346 460 1184 596 C1058 704 918 724 760 680 C876 512 926 250 1120 190Z" fill="none" stroke="#fff1bd" stroke-opacity="0.22" stroke-width="2"/>
+  <path d="M240 860 C560 700 760 770 1020 650 C1250 545 1410 300 1690 338" fill="none" stroke="#b8862f" stroke-opacity="0.22" stroke-width="1.5"/>
+</svg>

@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaGraduationCap, FaCode, FaLaptopCode } from 'react-icons/fa'
+import { useParallax } from '../hooks/useParallax'
+import ParallaxLayers from './ParallaxLayers'
 
 export default function About() {
   const timelineItems = [
@@ -44,27 +46,60 @@ export default function About() {
     },
   }
 
+  const { ref: parallaxRef, yOffset } = useParallax(0.4)
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <motion.section
       id="about"
+      ref={parallaxRef}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="py-20 bg-gradient-to-b from-secondary to-primary relative overflow-hidden"
+      className="section-bg min-h-screen py-20 relative overflow-hidden"
+      style={{
+        backgroundImage: "url('/images/bg-about.svg')",
+      }}
     >
-      {/* Animated background elements */}
+      <div className="gold-shine" />
+      <ParallaxLayers scrollY={scrollY} />
+
+      {/* Parallax background layers */}
       <motion.div
-        animate={{ y: [0, 20, 0] }}
-        transition={{ duration: 8, repeat: Infinity }}
+        animate={{ y: scrollY * 0.5, opacity: 0.3 }}
+        transition={{ type: 'spring', damping: 30 }}
+        className="absolute inset-0"
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-accent/10 via-transparent to-transparent"></div>
+      </motion.div>
+
+      {/* Animated background elements with parallax */}
+      <motion.div
+        animate={{
+          y: [0, 30, 0],
+          x: scrollY * 0.2,
+        }}
+        transition={{ duration: 8, repeat: Infinity, type: 'tween' }}
         className="absolute top-10 right-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl"
       ></motion.div>
       <motion.div
-        animate={{ y: [20, 0, 20] }}
-        transition={{ duration: 10, repeat: Infinity }}
+        animate={{
+          y: [30, 0, 30],
+          x: scrollY * -0.15,
+        }}
+        transition={{ duration: 10, repeat: Infinity, type: 'tween' }}
         className="absolute -bottom-32 -left-32 w-96 h-96 bg-accent/3 rounded-full blur-3xl"
       ></motion.div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,7 +109,7 @@ export default function About() {
         >
           <h2 className="text-5xl lg:text-6xl font-black mb-4">
             <span className="text-accent">#</span>
-            <span className="bg-gradient-to-r from-white via-accent to-accent-light bg-clip-text text-transparent"> About Me</span>
+            <span className="premium-heading"> About Me</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Full Stack Developer with a passion for creating beautiful, functional web applications

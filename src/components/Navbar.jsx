@@ -51,7 +51,7 @@ export default function Navbar() {
             className="text-2xl font-black cursor-pointer"
           >
             <motion.span className="text-accent">&lt;</motion.span>
-            <span className="bg-gradient-to-r from-accent via-accent-light to-cyan-400 bg-clip-text text-transparent">SUBHASANGAR</span>
+            <span className="bg-gradient-to-r from-accent-dark via-accent to-accent-light bg-clip-text text-transparent">SUBHASANGAR</span>
             <motion.span className="text-accent">/ &gt;</motion.span>
           </motion.div>
 
@@ -128,7 +128,7 @@ export default function Navbar() {
                 key={index}
                 variants={itemVariants}
                 href={`#${item.id}`}
-                whileHover={{ x: 10, color: '#39ff14' }}
+                whileHover={{ x: 10, color: '#d9b76f' }}
                 className="block px-4 py-2 text-white text-sm font-semibold rounded-lg hover:bg-accent/10 transition-all duration-300"
                 onClick={() => setIsOpen(false)}
               >

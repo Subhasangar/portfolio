@@ -1,0 +1,22 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="projectsBase" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050403"/>
+      <stop offset="45%" stop-color="#0e0a07"/>
+      <stop offset="100%" stop-color="#24190c"/>
+    </linearGradient>
+    <radialGradient id="showcase" cx="52%" cy="48%" r="48%">
+      <stop offset="0%" stop-color="#fff1bd" stop-opacity="0.2"/>
+      <stop offset="50%" stop-color="#f0c66e" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#050403" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="24"/></filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#projectsBase)"/>
+  <rect width="1920" height="1080" fill="url(#showcase)"/>
+  <path d="M80 650 C360 470 630 540 890 410 C1120 292 1380 190 1840 310" fill="none" stroke="#fff1bd" stroke-opacity="0.2" stroke-width="2"/>
+  <path d="M0 790 C380 590 620 690 930 535 C1220 390 1440 320 1920 440" fill="none" stroke="#b8862f" stroke-opacity="0.26" stroke-width="4"/>
+  <rect x="1130" y="205" width="430" height="300" rx="22" fill="#fff1bd" opacity="0.05" transform="rotate(-8 1345 355)"/>
+  <rect x="1210" y="260" width="430" height="300" rx="22" fill="#f0c66e" opacity="0.06" transform="rotate(7 1425 410)"/>
+  <circle cx="280" cy="250" r="160" fill="#f0c66e" opacity="0.08" filter="url(#blur)"/>
+</svg>

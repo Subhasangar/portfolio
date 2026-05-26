@@ -1,0 +1,20 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skillsBase" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#050403"/>
+      <stop offset="55%" stop-color="#100c08"/>
+      <stop offset="100%" stop-color="#22180c"/>
+    </linearGradient>
+    <pattern id="facet" width="180" height="156" patternUnits="userSpaceOnUse">
+      <path d="M90 0 L180 52 L180 104 L90 156 L0 104 L0 52 Z" fill="none" stroke="#f0c66e" stroke-opacity="0.13" stroke-width="1.2"/>
+      <path d="M0 52 L90 104 L180 52" fill="none" stroke="#fff1bd" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+    <filter id="blur"><feGaussianBlur stdDeviation="28"/></filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#skillsBase)"/>
+  <rect width="1920" height="1080" fill="url(#facet)" opacity="0.72"/>
+  <circle cx="1360" cy="310" r="330" fill="#f0c66e" opacity="0.09" filter="url(#blur)"/>
+  <circle cx="430" cy="790" r="260" fill="#fff1bd" opacity="0.06" filter="url(#blur)"/>
+  <path d="M380 280 L680 180 L1030 310 L1320 210 L1640 340" fill="none" stroke="#fff1bd" stroke-opacity="0.16" stroke-width="2"/>
+  <path d="M300 850 L700 690 L1020 760 L1450 610 L1700 700" fill="none" stroke="#b8862f" stroke-opacity="0.2" stroke-width="3"/>
+</svg>

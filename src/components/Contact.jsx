@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { MdPhone, MdEmail, MdLocationOn, MdSend } from 'react-icons/md'
+import { useParallax } from '../hooks/useParallax'
+import ParallaxLayers from './ParallaxLayers'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -16,19 +18,19 @@ export default function Contact() {
       icon: <MdPhone className="text-3xl" />,
       title: 'Phone',
       content: '+91 8428487274',
-      color: 'from-green-500 to-emerald-500',
+      color: 'from-accent-dark to-accent-light',
     },
     {
       icon: <MdEmail className="text-3xl" />,
       title: 'Email',
       content: 'ssubhasangar@gmail.com',
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-amber-700 to-accent',
     },
     {
       icon: <MdLocationOn className="text-3xl" />,
       title: 'Location',
       content: 'Available for remote work/prefer on-site also',
-      color: 'from-purple-500 to-pink-500',
+      color: 'from-stone-700 to-accent-light',
     },
   ]
 
@@ -52,6 +54,17 @@ export default function Contact() {
     },
   }
 
+  const { ref: parallaxRef, yOffset } = useParallax(0.35)
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -71,24 +84,49 @@ export default function Contact() {
   return (
     <motion.section
       id="contact"
+      ref={parallaxRef}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="py-20 bg-gradient-to-b from-secondary to-primary relative overflow-hidden"
+      className="section-bg min-h-screen py-20 relative overflow-hidden"
+      style={{
+        backgroundImage: "url('/images/bg-contact.svg')",
+      }}
     >
+      <div className="gold-shine" />
+      <ParallaxLayers scrollY={scrollY} />
+
+      {/* Parallax scroll background layer */}
+      <motion.div
+        animate={{
+          y: scrollY * 0.5,
+          opacity: 0.25,
+        }}
+        transition={{ type: 'spring', damping: 30 }}
+        className="absolute inset-0"
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-accent/8 via-transparent to-accent-dark/10"></div>
+      </motion.div>
+
       {/* Animated background elements */}
       <motion.div
-        animate={{ y: [0, 25, 0] }}
-        transition={{ duration: 9, repeat: Infinity }}
-        className="absolute top-0 left-0 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl"
+        animate={{
+          y: [0, 25, 0],
+          x: scrollY * 0.15,
+        }}
+        transition={{ duration: 9, repeat: Infinity, type: 'tween' }}
+        className="absolute top-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl"
       ></motion.div>
       <motion.div
-        animate={{ y: [25, 0, 25] }}
-        transition={{ duration: 11, repeat: Infinity }}
-        className="absolute bottom-0 right-0 w-96 h-96 bg-pink-500/5 rounded-full blur-3xl"
+        animate={{
+          y: [25, 0, 25],
+          x: scrollY * -0.12,
+        }}
+        transition={{ duration: 11, repeat: Infinity, type: 'tween' }}
+        className="absolute bottom-0 right-0 w-96 h-96 bg-accent-dark/12 rounded-full blur-3xl"
       ></motion.div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -98,7 +136,7 @@ export default function Contact() {
         >
           <h2 className="text-5xl lg:text-6xl font-black mb-4">
             <span className="text-accent">#</span>
-            <span className="bg-gradient-to-r from-white via-purple-400 to-pink-400 bg-clip-text text-transparent"> Get In Touch</span>
+            <span className="premium-heading"> Get In Touch</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Have a question or want to work together? Let's get in touch!
@@ -161,7 +199,7 @@ export default function Contact() {
             viewport={{ once: true }}
             className="relative group"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-600 opacity-20 rounded-2xl blur-xl group-hover:opacity-30 transition-all duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-accent-dark to-accent-light opacity-20 rounded-2xl blur-xl group-hover:opacity-30 transition-all duration-300"></div>
             <div className="relative bg-gradient-to-br from-secondary to-primary p-8 lg:p-10 rounded-2xl border border-accent/30 group-hover:border-accent/60 transition-all duration-300 backdrop-blur-sm">
               <h3 className="text-2xl font-bold mb-8 text-white">
                 <span className="text-accent">#</span> Send Message
@@ -197,7 +235,7 @@ export default function Contact() {
                     >
                       <label className="block text-gray-300 mb-2 text-sm font-semibold">Name *</label>
                       <motion.input
-                        whileFocus={{ borderColor: '#39ff14', boxShadow: '0 0 20px rgba(57,255,20,0.2)' }}
+                        whileFocus={{ borderColor: '#d9b76f', boxShadow: '0 0 20px rgba(217,183,111,0.24)' }}
                         type="text"
                         name="name"
                         value={formData.name}
@@ -213,7 +251,7 @@ export default function Contact() {
                     >
                       <label className="block text-gray-300 mb-2 text-sm font-semibold">Email *</label>
                       <motion.input
-                        whileFocus={{ borderColor: '#39ff14', boxShadow: '0 0 20px rgba(57,255,20,0.2)' }}
+                        whileFocus={{ borderColor: '#d9b76f', boxShadow: '0 0 20px rgba(217,183,111,0.24)' }}
                         type="email"
                         name="email"
                         value={formData.email}
@@ -228,7 +266,7 @@ export default function Contact() {
                   <motion.div variants={itemVariants} className="relative">
                     <label className="block text-gray-300 mb-2 text-sm font-semibold">Subject *</label>
                     <motion.input
-                      whileFocus={{ borderColor: '#39ff14', boxShadow: '0 0 20px rgba(57,255,20,0.2)' }}
+                      whileFocus={{ borderColor: '#d9b76f', boxShadow: '0 0 20px rgba(217,183,111,0.24)' }}
                       type="text"
                       name="subject"
                       value={formData.subject}
@@ -242,7 +280,7 @@ export default function Contact() {
                   <motion.div variants={itemVariants} className="relative">
                     <label className="block text-gray-300 mb-2 text-sm font-semibold">Message *</label>
                     <motion.textarea
-                      whileFocus={{ borderColor: '#39ff14', boxShadow: '0 0 20px rgba(57,255,20,0.2)' }}
+                      whileFocus={{ borderColor: '#d9b76f', boxShadow: '0 0 20px rgba(217,183,111,0.24)' }}
                       rows="5"
                       name="message"
                       value={formData.message}
@@ -255,7 +293,7 @@ export default function Contact() {
 
                   <motion.button
                     variants={itemVariants}
-                    whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(57,255,20,0.4)' }}
+                    whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(217,183,111,0.45)' }}
                     whileTap={{ scale: 0.95 }}
                     type="submit"
                     className="w-full bg-gradient-to-r from-accent to-accent-light text-primary py-3 rounded-lg font-bold transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg"

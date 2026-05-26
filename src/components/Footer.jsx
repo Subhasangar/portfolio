@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
+import { useParallax } from '../hooks/useParallax'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const [scrollY, setScrollY] = useState(0)
+  const { ref: parallaxRef, yOffset } = useParallax(0.3)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const socialLinks = [
     { icon: <FaGithub className="text-xl" />, url: 'https://github.com/Subhasangar', label: 'GitHub', color: 'from-gray-600 to-gray-700' },
@@ -33,15 +44,34 @@ export default function Footer() {
 
   return (
     <motion.footer
+      ref={parallaxRef}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="bg-gradient-to-b from-primary to-secondary border-t border-accent/30 relative overflow-hidden pt-16 pb-8"
+      className="section-bg border-t border-accent/30 relative overflow-hidden pt-16 pb-8"
+      style={{
+        backgroundImage: "url('/images/bg-contact.svg')",
+      }}
     >
+      {/* Parallax scroll background layer */}
+      <motion.div
+        animate={{
+          y: scrollY * 0.4,
+          opacity: 0.15,
+        }}
+        transition={{ type: 'spring', damping: 30 }}
+        className="absolute inset-0"
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-accent/8 to-transparent"></div>
+      </motion.div>
+
       {/* Background decoration */}
       <motion.div
-        animate={{ y: [-20, 20, -20] }}
-        transition={{ duration: 10, repeat: Infinity }}
+        animate={{
+          y: [-20, 20, -20],
+          x: scrollY * 0.1,
+        }}
+        transition={{ duration: 10, repeat: Infinity, type: 'tween' }}
         className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl"
       ></motion.div>
 
@@ -152,7 +182,7 @@ export default function Footer() {
               className="text-red-500 inline-block"
             >
               ❤️
-            </motion.span> using <span className="text-accent">React</span> & <span className="text-cyan-400">Framer Motion</span>
+            </motion.span> using <span className="text-accent">React</span> & <span className="text-accent-light">Framer Motion</span>
           </p>
         </motion.div>
       </div>
